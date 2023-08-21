@@ -1,45 +1,7 @@
-# 99 bottles of Beer
-
-# This program sings 99 Bottles of Beer, one bottle at a time
-# Each bottle that they drink, they become more inebriated
-# progressively, their words become slurred and disorderly
-# until they are no longer elligable
-
-
-# 99 bottles of beer on the wall, 99 bottles of beer!
-# Take one down, pass it around, 98 bottles of beer on the wall!
-# ==>
-# 99 wottles so aear on fah kall, 99 lotales of beer!
-# laee pne kown, ... 98 alwnfg os beer etc cetera
-
-# Punctuation, word separation, and numbers will be the same, 
-
-
-# 2 int variables  ==> current_bottle, next_bottle
-# end condition, no more bottles left to drink
-# need to wait on user input to move to the next line <= gets.something
-# most of the work will be in string manipulation 
-# I can use my previous ceasar cipher logic and make something 
-
-
-# tiers of drunkness every ten bottles
-# need to make some code cleaner then a million if tier 1 then..
-# something more modular 
-
-#STORY
-# you walk in
-# ... they begin to sing
-# bottle 50 => poem
-# bottle 1 => .....
-# bottle 0 => you wake up, having dreamt of something
-# ==> next poem
-# end
-
-
 require 'io/console'
 
+# Function that only progresses program one line at a time with each key press
 def continue_story                                                                                                               
-#   print "press any key"                                                                                                    
   STDIN.getch                                                                                                              
   print "            \r"                                                                                                    
 end 
@@ -53,7 +15,6 @@ def sing
         continue_story
         current_bottle -= 1
     end   
-    # p poem(current_bottle)
 end
 
 def sing_line(current_bottle)
@@ -63,7 +24,6 @@ def sing_line(current_bottle)
     altered_list = Hash.new
     i = 1
 
-    # slur_words(current_bottle, encode, altered_list, 0)
 
     case current_bottle
     when 66..100
@@ -92,16 +52,16 @@ def slur_words(current_bottle, encode, altered_list, modifier)
     i = 1 
     chosen_index = 0
 
-
+# i is how many characters that will be slurred in the final line
     while i < (modifier)
         i += 1
         chosen_char = (97 + rand(26)).chr
         chosen_index = rand(113)
 
 
-
+# The rest of this is just making sure not to change a index that was already changed
+# and that an actual letter from a - z is chosen
         until ('a'..'z').include?(encode[chosen_index]) || ('A'..'Z').include?(encode[chosen_index]) do 
-            # keep in mind altered_list needs to be accounted for
             chosen_index = rand(113)
         end 
 
@@ -116,8 +76,10 @@ def slur_words(current_bottle, encode, altered_list, modifier)
     sleep(0.25)
 end
 
-def poem(place)
 
+
+def poem(place)
+# Story stuff
     case place
     when 1
         puts "."
@@ -198,36 +160,17 @@ sleep(3)
 puts "press any key"
 continue_story
 sing()
-# sing_line(1, 2, 3)
-
-
-# Things to put for line 50
-#   why do we drink
-#  what is the general story about?
-#   
-#   Back again, in your old ways
-#   You sustain a bitter cycle
-#   work at sea, to come to land to drink, to go back to work at sea
-#   First part, you have just come back from sea, to go find a drink to drown yourself
-#   Second part, you find yourself woken up at sea 
-#   third part, dreaming of release which is ambiguous if you die
-#   but fourth part, completely free, you break the cycle and can leave 
-
-# can be structered differently
-# to progress better instead of line 50, line 2, line 1
-# scattered throughout maybe every 25
-# line 60 
-
-# You were on the mountain the whole time
-# Slowly coming to the realization of being free
-# so the rocking of the boat and being in the dreamy place is really you asleep on the mountain
-# the singing is like a howling, the gray is the thunderheads coming closer
-# The motion of the boat is like a comfort => the comfort of sleeping on a mountain
-# comfort => soothing of nature mountain => healing
 
 # future reference =>
 # when you get to the end of the story, lines 10 and less, start to shorten what they're saying, like as if the thought is wandering away, with the string getting shorter and shorter
-
+# 10 => 10 bottles of beer on the wall, 10 bottles o
+# 9 =>  9 bottles of beer on the wal
+# 8 => 8 bottles of beer on th
+# 7 => 7 bottl
+# 6 => 6
+# 5 => 5
+# 4 => 4
+# (all letters should be randomized still)
 
 
 
